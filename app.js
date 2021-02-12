@@ -7,7 +7,7 @@ const login = require('./routes/login')
 app.set("view engine", "ejs");
 app.use(
   bodyParser.urlencoded({
-    extended: true,
+    extended: false,
   })
 );
 app.use(bodyParser.json())
