@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 router
   .route("/register")
   .get((req, res) => {
-    res.render("register", { message: "" });
+    res.render("register");
   })
   .post((req, res) => {
     const user ={
@@ -22,14 +22,12 @@ router
       password: req.body.password
     }
 
-    checkUser =  new User
-    const {message,error} = checkUser.registration(user)
-    if(message == "error"){
+    let checkUser =  new User
+    const {data,error} = checkUser.registration(user)
+    if(error){
       res.status(400).json(error)
-    }else if(message == "user Exist"){
-      res.status(400).json("userExist")
     }else{
-      res.status(200).json("user successfully added")
+      res.status(200).json(data)
     }
 
   });
@@ -40,7 +38,18 @@ router
     res.render("login");
   })
   .post((req, res) => {
+    const user ={
+      email : req.body.email,
+      password: req.body.password
+    }
 
+    let checkUser = new User
+    const { loggedIn, error } = checkUser.login(user)
+    if(error){
+      res.status(400).json(error)
+    }else{
+      res.status(200).json(loggedIn)
+    }
   });
 
 

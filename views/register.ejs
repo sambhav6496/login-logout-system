@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>register</h1>
-    <p><%=message%></p>
+    <p></p>
     <form action="/api/register" method="POST">
       <input type="text" name="email" id="email" placeholder="enter email" /><br />
       <input
@@ -25,7 +25,7 @@
       const email = document.querySelector('#email')
       const password = document.querySelector('#password')
       form.addEventListener("submit", function(e){
-        e.preventDefault()
+        // e.preventDefault()
         fetch("/api/register", { 
       
       // Adding method type 
