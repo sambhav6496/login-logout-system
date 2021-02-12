@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>register</h1>
+    <p></p>
+    <form action="/api/register" method="POST">
+      <input type="text" name="email" id="email" placeholder="enter email" /><br />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="enter password"
+      /><br />
+      <button type="submit">register</button>
+      
+    </form>
+    <a href="/api/login">login</a>
+    <script>
+      const form = document.querySelector('form')
+      const email = document.querySelector('#email')
+      const password = document.querySelector('#password')
+      form.addEventListener("submit", function(e){
+        // e.preventDefault()
+        fetch("/api/register", { 
+      
+      // Adding method type 
+      method: "POST", 
+        
+      // Adding body or contents to send 
+      body: JSON.stringify({ 
+          email: email.value , 
+          password: password.value ,  
+      }), 
+        
+  }) 
+    
+  // Converting to JSON 
+  .then(response => response.json()) 
+    
+  // Displaying results to console 
+  .then(json => console.log(json)); 
+      })
+    </script>
+  </body>
+</html>
